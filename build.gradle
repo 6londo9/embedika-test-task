@@ -1,0 +1,101 @@
+plugins {
+	id 'application'
+	id 'checkstyle'
+	id 'jacoco'
+	id 'com.adarshr.test-logger' version '2.1.1'
+	id 'com.github.ben-manes.versions' version '0.38.0'
+	id 'org.liquibase.gradle' version '2.0.4'
+	id 'org.springframework.boot' version '3.0.3'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'embedika.code'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+application {
+	mainClass = 'embedika.code.Application'
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok'
+	implementation(
+			'org.springframework.boot:spring-boot-starter-data-jpa',
+			'org.springframework.boot:spring-boot-starter-thymeleaf',
+			'org.springframework.boot:spring-boot-starter-validation',
+			'org.springframework.boot:spring-boot-starter-web',
+			'org.liquibase:liquibase-core',
+			'org.springdoc:springdoc-openapi-starter-webmvc-api:2.0.2',
+			'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+	)
+	runtimeOnly(
+			'com.h2database:h2',
+			'org.postgresql:postgresql'
+	)
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	liquibaseRuntime(
+			sourceSets.main.output,
+			'com.h2database:h2:2.1.214',
+			'org.liquibase:liquibase-core:4.19.0',
+			'org.liquibase.ext:liquibase-hibernate6:4.19.0',
+			'org.springframework.boot:spring-boot-starter-data-jpa',
+			'info.picocli:picocli:4.7.1'
+	)
+}
+
+test {
+	useJUnitPlatform()
+}
+
+compileJava {
+	options.release = 17
+	options.encoding = 'UTF-8'
+}
+
+wrapper {
+	gradleVersion = '7.6'
+	distributionType = Wrapper.DistributionType.ALL
+}
+
+diffChangeLog {
+	dependsOn compileJava
+}
+
+testlogger {
+	showStandardStreams = true
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+	}
+}
+
+checkstyle {
+	toolVersion '9.0'
+}
+
+liquibase {
+	activities {
+		main {
+			changeLogFile 'src/main/resources/db/changelog/changelog-master.xml'
+			url 'jdbc:h2:./taskManager'
+			username ''
+			password ''
+			referenceUrl 'hibernate:spring:embedika.code.model.' +
+					'?dialect=org.hibernate.dialect.H2Dialect' +
+					'&hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy'
+		}
+	}
+}
