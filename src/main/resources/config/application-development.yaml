@@ -1,0 +1,25 @@
+logging:
+  level:
+    root: INFO
+    web: DEBUG
+
+spring:
+  config:
+    activate:
+      on-profile: development
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:./carManagement
+    username:
+    password:
+
+  jpa:
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2console/
+      settings:
+        web-allow-others: true

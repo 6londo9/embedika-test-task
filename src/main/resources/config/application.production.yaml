@@ -1,0 +1,17 @@
+logging:
+  level:
+    root: INFO
+
+spring:
+  config:
+    activate:
+      on-profile: production
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
+    url: ${MYSQL_URL}
+
+  jpa:
+    show-sql: true
