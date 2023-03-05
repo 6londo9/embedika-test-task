@@ -108,11 +108,8 @@ public class CarServiceImpl implements CarService {
 
     private Car merge(Car car, CarDto carDto) {
         car.setCarColor(carDto.getCarColor().toLowerCase());
-        car.setCarPlateNumber(carDto.getCarPlateNumber());
+        car.setCarPlateNumber(carDto.getCarPlateNumber().toUpperCase());
         car.setYearOfIssue(carDto.getYearOfIssue());
         return car;
-    }
-    private Car isExist(Long carId) {
-        return carRepository.findById(carId).orElseThrow();
     }
 }
