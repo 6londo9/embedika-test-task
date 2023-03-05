@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/application.html}">
+
+<section layout:fragment="content">
+  <div class="container-lg mt-5">
+    <h1>Database stats</h1>
+      <table class="table table-bordered table-hover mt-3">
+        <thead>
+          <tr>
+            <th class="col-1">Cars count</th>
+            <th class="col-1">First added</th>
+            <th class="col-1">Last added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td th:text="${stats[0]}"></td>
+            <td th:text="${stats[1]}"></td>
+            <td th:text="${stats[2]}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</section>

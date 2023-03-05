@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/application.html}">
+
+<section layout:fragment="content">
+  <div class="container-lg mt-5">
+    <h1>Cars</h1>
+    <form method="get" action="/api/cars">
+      <label for="sort-by">Sort by:</label>
+      <select name="sortBy" id="sort-by">
+        <option value="createdAtDesc">Last added</option>
+        <option value="createdAt">First added</option>
+        <option value="carPlate">Car plate number</option>
+        <option value="color">Color</option>
+        <option value="yearOfIssueDesc">Newest</option>
+        <option value="yearOfIssue">Oldest</option>
+      </select>
+      <button type="submit" class="btn btn-outline-dark btn-sm">Sort</button>
+    </form>
+      <table class="table table-bordered table-hover mt-3">
+        <thead>
+          <tr>
+            <th class="col-1">ID</th>
+            <th>Plate Number</th>
+            <th class="col-1">Color</th>
+            <th class="col-2">Year of issue</th>
+            <th class="col-2">Creation date</th>
+            <th class="col-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="car : ${cars}" th:object="${car}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${car.carPlateNumber}"></td>
+            <td th:text="${car.carColor}"></td>
+            <td th:text="${car.yearOfIssue}"></td>
+            <td th:text="${#temporals.format(car.createdAt, 'dd/MM/yyyy')}"></td>
+            <td>
+              <button type="button" class="btn btn-outline-danger"
+                      th:attr="data-car-id=${car.id}" onclick="deleteCar(this.dataset.carId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div th:if="${cars.totalPages > 1}" class="d-flex justify-content-center align-items-center mt-4">
+        <ul class="pagination mb-0">
+          <li th:classappend="${cars.first ? 'disabled' : ''}" class="page-item">
+            <a th:href="@{|/api/cars?page=0&size=${cars.size}&sortBy=${sortBy}|}" aria-label="First" class="page-link">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li th:classappend="${cars.hasPrevious() ? '' : 'disabled'}" class="page-item">
+            <a th:href="@{|/api/cars?page=${cars.number-1}&size=${cars.size}&sortBy=${sortBy}|}" aria-label="Previous"
+               class="page-link">
+              <span aria-hidden="true">&lsaquo;</span>
+            </a>
+          </li>
+          <li th:each="i : ${#numbers.sequence(0, cars.totalPages-1)}" th:classappend="${cars.number == i ? 'active' : ''}"
+              class="page-item">
+            <a th:href="@{|/api/cars?page=${i}&size=${cars.size}&sortBy=${sortBy}|}" th:text="${i+1}"
+               class="page-link"></a>
+          </li>
+          <li th:classappend="${cars.hasNext() ? '' : 'disabled'}" class="page-item">
+            <a th:href="@{|/api/cars?page=${cars.number+1}&size=${cars.size}&sortBy=${sortBy}|}" aria-label="Next"
+               class="page-link">
+              <span aria-hidden="true">&rsaquo;</span>
+            </a>
+          </li>
+          <li th:classappend="${cars.last ? 'disabled' : ''}" class="page-item">
+            <a th:href="@{|/api/cars?page=${cars.totalPages-1}&size=${cars.size}&sortBy=${sortBy}|}" aria-label="Last"
+               class="page-link">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    <script>
+    function deleteCar(carId) {
+      fetch('/api/cars/' + carId, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        window.location.href = '/api/cars';
+      })
+      .catch(error => {
+        console.error('There was a problem deleting the car:', error);
+      });
+    }
+    </script>
+  </div>
+</section>
