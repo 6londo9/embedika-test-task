@@ -106,11 +106,11 @@ public class CarController {
 
     @Operation(summary = "Delete car")
     @ApiResponses(value = {
-                @ApiResponse(responseCode = "204", description = "Car successfully deleted"),
+                @ApiResponse(responseCode = "200", description = "Car successfully deleted"),
                 @ApiResponse(responseCode = "404", description = "Car with such id not found")
     })
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteCar(
             @PathVariable String id,
             HttpSession session

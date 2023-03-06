@@ -1,0 +1,16 @@
+spring:
+  application:
+    name:
+
+  datasource:
+    url: jdbc:h2:mem:db
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.xml

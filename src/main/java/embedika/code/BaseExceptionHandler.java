@@ -18,12 +18,13 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @ResponseBody
 @ControllerAdvice
 public class BaseExceptionHandler {
+
     @ResponseStatus(NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
     public RedirectView noSuchElementException(HttpSession session) {
         session.setAttribute("flash", "Car with such id is not found");
         session.setAttribute("flashType", "danger");
-        return new RedirectView("redirect:/api/cars");
+        return new RedirectView("/api/cars");
     }
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)

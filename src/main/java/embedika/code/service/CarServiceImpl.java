@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -88,11 +87,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteCar(Long carId) {
-        if (carRepository.existsById(carId)) {
-            carRepository.deleteById(carId);
-        } else {
-            throw new NotFoundException("Car with such id is not found");
-        }
+        carRepository.deleteById(carId);
     }
 
     @Override

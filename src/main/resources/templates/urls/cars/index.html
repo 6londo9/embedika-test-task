@@ -87,6 +87,8 @@
       })
       .catch(error => {
         console.error('There was a problem deleting the car:', error);
+        error.status = 404;
+        throw error;
       });
     }
     </script>
