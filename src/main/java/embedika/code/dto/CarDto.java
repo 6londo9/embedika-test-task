@@ -18,9 +18,11 @@ import lombok.Builder;
 public class CarDto {
     @NotBlank
     @CarPlateNumber
-    private String carPlateNumber;
+    private String plateNumber;
     @NotBlank
-    private String carColor;
+    private String model;
+    @NotBlank
+    private String color;
     @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer yearOfIssue;

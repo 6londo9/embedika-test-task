@@ -58,7 +58,7 @@ public class CarControllerTests {
                 .getResponse();
 
         assertThat(response.getStatus()).isEqualTo(200);
-        assertThat(response.getContentAsString()).contains("Car plate number");
+        assertThat(response.getContentAsString()).contains("Plate number");
     }
 
     @Test
@@ -83,9 +83,9 @@ public class CarControllerTests {
 
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(carRepository.count()).isEqualTo(2);
-        assertThat(carRepository.existsByCarPlateNumber("AA001A01")).isTrue();
-        assertThat(carRepository.existsByCarPlateNumber("BB001B01")).isFalse();
-        assertThat(carRepository.existsByCarPlateNumber("CC001C01")).isTrue();
+        assertThat(carRepository.existsByPlateNumber("AA001A01")).isTrue();
+        assertThat(carRepository.existsByPlateNumber("BB001B01")).isFalse();
+        assertThat(carRepository.existsByPlateNumber("CC001C01")).isTrue();
     }
 
     @Test
@@ -97,9 +97,9 @@ public class CarControllerTests {
                 .getResponse();
 
         assertThat(response.getStatus()).isEqualTo(404);
-        assertThat(carRepository.existsByCarPlateNumber("AA001A01")).isTrue();
-        assertThat(carRepository.existsByCarPlateNumber("BB001B01")).isFalse();
-        assertThat(carRepository.existsByCarPlateNumber("CC001C01")).isTrue();
+        assertThat(carRepository.existsByPlateNumber("AA001A01")).isTrue();
+        assertThat(carRepository.existsByPlateNumber("BB001B01")).isFalse();
+        assertThat(carRepository.existsByPlateNumber("CC001C01")).isTrue();
         assertThat(carRepository.count()).isEqualTo(3);
     }
 
@@ -124,22 +124,25 @@ public class CarControllerTests {
     private void setUp() {
         Car car1 = new Car();
         car1.setId(1L);
-        car1.setCarPlateNumber("AA001A01");
-        car1.setCarColor("black");
+        car1.setPlateNumber("AA001A01");
+        car1.setModel("TOYOTA");
+        car1.setColor("black");
         car1.setYearOfIssue(2010);
 
         Car car2 = new Car();
         car2.setId(2L);
-        car2.setCarPlateNumber("BB001B01");
-        car2.setCarColor("black");
+        car2.setPlateNumber("BB001B01");
+        car2.setModel("BMW");
+        car2.setColor("black");
         car2.setYearOfIssue(2010);
         LocalDateTime atStartOfDayResult2 = LocalDate.of(2004, 1, 1).atStartOfDay();
         car1.setCreatedAt(atStartOfDayResult2.atZone(ZoneId.of("UTC")).toInstant());
 
         Car car3 = new Car();
         car3.setId(3L);
-        car3.setCarPlateNumber("CC001C01");
-        car3.setCarColor("black");
+        car3.setPlateNumber("CC001C01");
+        car3.setModel("MERCEDES");
+        car3.setColor("black");
         car3.setYearOfIssue(2010);
         LocalDateTime atStartOfDayResult3 = LocalDate.of(2010, 1, 1).atStartOfDay();
         car1.setCreatedAt(atStartOfDayResult3.atZone(ZoneId.of("UTC")).toInstant());

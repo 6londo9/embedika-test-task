@@ -14,7 +14,7 @@
 A little bit information about the app:
 
 - For development DB I used h2 database / For production DB - PostgreSQL.
-- The view of pages was made with Bootstrap and Thymeleaf. Actually some buttons was made using JS and AJAX. But it was not my work, the google helps me.
+- The view of pages was made with Bootstrap and Thymeleaf. Actually some buttons was made using JS and AJAX. But it was not my work, the Google helps me.
 
 ---
 
@@ -25,7 +25,7 @@ Here is a quick review of project:
 - - If user add a car, which is not already presented in DB, then he will see the next page.
 - After successfully adding a car, user will be redirected to cars table.
 - - Cars table has an option for sorting, that was made with '@Query' in CarRepository.
-This view also has a delete buttons, that make delete request for each presented car. Also there is a pagination,
+This view also has a delete buttons, that make delete request for each presented car. Also, there is a pagination,
 that I made with 'Pageable' class.
 - In the &lt;navbar&gt; you can actually find, that there is a 'Stats' link. It will show you:
 - - How many entities are in the DB right now,
@@ -35,8 +35,8 @@ that I made with 'Pageable' class.
 ---
 #### P.S. If you want to make some requests with Postman, here is a few tips:
 #### - When you make 'Post' requests, please use x-www-form-urlencoded type of body.
-#### - Some of the response codes are not supposed to be like what it looks like now, such as '200' code if Delete request was sent to invalid id, etc.
+#### - Some response codes are not supposed to be like what they look like now, such as '200' code if Delete request was sent to invalid id, etc.
 #### - Also I use swagger for making documentation, but for some reason, it's not showing all the API, that I made.
 
 ---
-If you still have some question or you may want to contact me, please, find me via [telegram](https://t.me/blondog).
+If you still have some question, or you may want to contact me, please, find me via [telegram](https://t.me/blondog).

@@ -13,7 +13,7 @@ public interface CarService {
     Car addCar(CarDto carDto);
     List<Car> getCars(String param);
     Optional<Car> getCarById(Long id);
-    boolean isCarPresentByCarPlateNumber(@NotBlank @Size String carPlateNumber);
+    boolean isCarPresentByPlateNumber(@NotBlank @Size String carPlateNumber);
     void deleteCar(Long carId);
     List<String> getDbStats();
 }

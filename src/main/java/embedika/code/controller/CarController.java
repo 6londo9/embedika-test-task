@@ -91,7 +91,7 @@ public class CarController {
     ) {
         LOGGER.info("CARDTO: " + carDto);
         ModelAndView mv = new ModelAndView("redirect:/api/cars");
-        if (!carService.isCarPresentByCarPlateNumber(carDto.getCarPlateNumber())) {
+        if (!carService.isCarPresentByPlateNumber(carDto.getPlateNumber())) {
             carService.addCar(carDto);
             mv.setStatus(HttpStatus.SEE_OTHER);
             session.setAttribute("flash", "Car successfully added");

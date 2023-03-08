@@ -11,6 +11,7 @@
         <option value="createdAtDesc">Last added</option>
         <option value="createdAt">First added</option>
         <option value="carPlate">Car plate number</option>
+        <option value="model">Model</option>
         <option value="color">Color</option>
         <option value="yearOfIssueDesc">Newest</option>
         <option value="yearOfIssue">Oldest</option>
@@ -22,6 +23,7 @@
           <tr>
             <th class="col-1">ID</th>
             <th>Plate Number</th>
+            <th class="col-1">Model</th>
             <th class="col-1">Color</th>
             <th class="col-2">Year of issue</th>
             <th class="col-2">Creation date</th>
@@ -31,8 +33,9 @@
         <tbody>
           <tr th:each="car : ${cars}" th:object="${car}">
             <td th:text="${car.id}"></td>
-            <td th:text="${car.carPlateNumber}"></td>
-            <td th:text="${car.carColor}"></td>
+            <td th:text="${car.plateNumber}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.color}"></td>
             <td th:text="${car.yearOfIssue}"></td>
             <td th:text="${#temporals.format(car.createdAt, 'dd/MM/yyyy')}"></td>
             <td>

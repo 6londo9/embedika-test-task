@@ -10,16 +10,17 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
     @Query("SELECT c FROM Car c ORDER BY "
-            + "SUBSTR(c.carPlateNumber, 1, 2), "
-            + "CAST(SUBSTR(c.carPlateNumber, 3, 3) AS integer), "
-            + "SUBSTR(c.carPlateNumber, 6, 1), "
-            + "CAST(SUBSTR(c.carPlateNumber, 7) AS integer)")
-    List<Car> findAllSortedByCarPlateNumber();
+            + "SUBSTR(c.plateNumber, 1, 2), "
+            + "CAST(SUBSTR(c.plateNumber, 3, 3) AS integer), "
+            + "SUBSTR(c.plateNumber, 6, 1), "
+            + "CAST(SUBSTR(c.plateNumber, 7) AS integer)")
+    List<Car> findAllSortedByPlateNumber();
     List<Car> findAllByOrderByCreatedAtAsc();
     List<Car> findAllByOrderByCreatedAtDesc();
-    List<Car> findAllByOrderByCarColor();
+    List<Car> findAllByOrderByModel();
+    List<Car> findAllByOrderByColor();
     List<Car> findAllByOrderByYearOfIssue();
     List<Car> findAllByOrderByYearOfIssueDesc();
     boolean existsById(Long carId);
-    boolean existsByCarPlateNumber(String carPlateNumber);
+    boolean existsByPlateNumber(String carPlateNumber);
 }

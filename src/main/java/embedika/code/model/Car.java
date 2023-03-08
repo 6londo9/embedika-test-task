@@ -29,9 +29,11 @@ public class Car {
     @NotBlank
     @CarPlateNumber
     @Column(unique = true)
-    private String carPlateNumber;
+    private String plateNumber;
     @NotBlank
-    private String carColor;
+    private String model;
+    @NotBlank
+    private String color;
     @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer yearOfIssue;

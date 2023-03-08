@@ -13,19 +13,27 @@
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                   <form id="carForm" class="mx-1 mx-md-4" action="/api/cars" method="post">
                     <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-align-justify fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example1c">Plate number</label>
+                        <input type="text" id="form3Example1c" class="form-control" placeholder="AA000A00"
+                               required name="plateNumber"/>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-car fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="form3Example1c">Car plate number</label>
-                        <input type="text" id="form3Example1c" class="form-control" placeholder="AA000A00"
-                               required name="carPlateNumber"/>
+                        <label class="form-label" for="form3Example1c">Model</label>
+                        <input type="text" id="form3Example2c" class="form-control" placeholder="Toyota"
+                               required name="model"/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-paint-brush fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="form3Example3c">Car color</label>
+                        <label class="form-label" for="form3Example3c">Color</label>
                         <input type="text" id="form3Example3c" class="form-control" placeholder="white"
-                               required name="carColor"/>
+                               required name="color"/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
