@@ -74,7 +74,9 @@ public class CarController {
 
 
     /**
-     * Без JS не разобрался, как сразу отправлять JSON через &lt;form&gt; в html
+     * Без JS не разобрался, как сразу отправлять JSON через &lt;form&gt; в html.
+     * Чтобы поправить данную ошибку, нужно убрать 'consumes' и добавить @RequestBody к CarDto, тогда
+     * Post Request будет отправлять JSON. Для реализации фронтенда оставил так, как есть на данный момент.
      **/
     @Operation(summary = "Post new car")
     @ApiResponses(value = {
